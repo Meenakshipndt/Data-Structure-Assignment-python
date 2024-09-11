@@ -63,3 +63,19 @@ print(result)  # Output: 15
 
 
 ## 2. Practical 
+
+
+### Practical 1  Sum of Even Numbers in a List
+
+```python
+def sum_even_numbers(numbers):
+    return sum(num for num in numbers if num % 2 == 0)
+
+# Example usage
+numbers = [1, 2, 3, 4, 5, 6]
+print(sum_even_numbers(numbers))  # Output: 12
+
+
+```
+
+
