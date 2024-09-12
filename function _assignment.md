@@ -194,10 +194,6 @@ Tuples: Immutable, slightly faster and memory-efficient, suitable for fixed coll
 
 
 
-
-
-
-
 ## 2. Practical 
 
 
