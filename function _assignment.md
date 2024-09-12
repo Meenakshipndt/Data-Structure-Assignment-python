@@ -273,17 +273,166 @@ filter_result = filter(lambda x: x > 2, [1, 2, 3])  # Output: [3]
 ## 2. Practical 
 
 
-### Practical 1  Sum of Even Numbers in a List
-
+### Practical : 1  Function to sum all even numbers in a list:
 ```python
 def sum_even_numbers(numbers):
     return sum(num for num in numbers if num % 2 == 0)
 
-# Example usage
+# Example usage:
 numbers = [1, 2, 3, 4, 5, 6]
 print(sum_even_numbers(numbers))  # Output: 12
 
+```
+
+### Practical : 2 Function to reverse a string:
+```python
+def reverse_string(s):
+    return s[::-1]
+
+# Example usage:
+s = "hello"
+print(reverse_string(s))  # Output: "olleh"
 
 ```
+
+### Practical : 3 Function to return a list of squares:
+```python
+def square_numbers(numbers):
+    return [num ** 2 for num in numbers]
+
+# Example usage:
+numbers = [1, 2, 3, 4]
+print(square_numbers(numbers))  # Output: [1, 4, 9, 16]
+
+```
+
+### Practical : 4 Function to check if a number is prime:
+```python
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Check prime numbers from 1 to 200
+primes = [n for n in range(1, 201) if is_prime(n)]
+print(primes)
+
+```
+
+### Practical : 5 Fibonacci iterator class:
+```python
+class Fibonacci:
+    def __init__(self, n):
+        self.n = n
+        self.a, self.b = 0, 1
+        self.count = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.count >= self.n:
+            raise StopIteration
+        fib = self.a
+        self.a, self.b = self.b, self.a + self.b
+        self.count += 1
+        return fib
+
+# Example usage:
+fib_iter = Fibonacci(10)
+for num in fib_iter:
+    print(num, end=" ")  # Output: 0 1 1 2 3 5 8 13 21 34
+
+```
+
+### Practical 6 : Generator for powers of 2 up to a given exponent:
+```python
+def powers_of_two(exponent):
+    for i in range(exponent + 1):
+        yield 2 ** i
+
+# Example usage:
+for power in powers_of_two(5):
+    print(power)  # Output: 1, 2, 4, 8, 16, 32
+
+```
+
+### Practical 7 : Generator function that reads a file line by line:
+```python
+def read_file_line_by_line(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            yield line.strip()
+
+# Example usage:
+# for line in read_file_line_by_line('example.txt'):
+#     print(line)
+
+```
+
+### Practical 8 : Lambda function to sort a list of tuples based on the second element:
+```python
+tuples_list = [(1, 3), (4, 1), (5, 2)]
+sorted_list = sorted(tuples_list, key=lambda x: x[1])
+
+print(sorted_list)  # Output: [(4, 1), (5, 2), (1, 3)]
+
+```
+### Practical 9 : Program to convert a list of temperatures from Celsius to Fahrenheit using `map()`:
+
+```python
+def celsius_to_fahrenheit(c):
+    return (c * 9/5) + 32
+
+temperatures_celsius = [0, 20, 30, 40]
+temperatures_fahrenheit = list(map(celsius_to_fahrenheit, temperatures_celsius))
+
+print(temperatures_fahrenheit)  # Output: [32.0, 68.0, 86.0, 104.0]
+
+```
+
+### Practical 10: Program to remove all vowels from a string using filter():
+```python
+def remove_vowels(s):
+    vowels = "aeiouAEIOU"
+    return ''.join(filter(lambda x: x not in vowels, s))
+
+# Example usage:
+s = "hello world"
+print(remove_vowels(s))  # Output: "hll wrld"
+
+```
+
+### Practical 11: Bookshop Order Total Calculation:
+```python
+
+# Input: List of sublists with order details
+orders = [
+    [34587, "Learning Python, Mark Lutz", 4, 40.95],
+    [98762, "Programming Python, Mark Lutz ", 5, 56.80],
+    [77226, "Head First Python, Paul Barry", 3, 32.95],
+    [88112, "Einführung in Python3, Bernd Klein", 3, 24.99]
+]
+
+# Lambda function and map to calculate the desired output
+result = list(map(lambda order: (order[0], order[2] * order[3] + 10 if order[2] * order[3] < 100 else order[2] * order[3]), orders))
+
+# Output the result
+print(result)
+
+# Output: [(34587, 163.8), (98762, 284.0), (77226, 108.85000000000001), (88112, 84.97)]
+
+
+
+```
+
+
+
+
+
+
 
 
