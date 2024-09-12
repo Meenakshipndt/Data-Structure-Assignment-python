@@ -50,9 +50,9 @@ print(result)  # Output: 15
 
 
 
-###Question : 3 Describe how to access, modify, and delete elements in a list with examples. 
+### Question : 3 Describe how to access, modify, and delete elements in a list with examples. 
 
-### Accessing Elements
+#### Accessing Elements
 
 Use indexing to retrieve elements. Indexing starts at 0.
 
@@ -62,7 +62,7 @@ first_fruit = fruits[0]  # 'apple'
 last_fruit = fruits[-1]  # 'cherry'
 ```
 
-### Modifying Elements
+#### Modifying Elements
 
 Assign a new value to a specific index to change an element.
 
@@ -71,7 +71,7 @@ fruits = ['apple', 'banana', 'cherry']
 fruits[1] = 'blueberry'  # Change 'banana' to 'blueberry'
 ```
 
-### Deleting Elements
+#### Deleting Elements
 
 1. **Using `del` keyword:**
 
@@ -103,44 +103,45 @@ fruits[1] = 'blueberry'  # Change 'banana' to 'blueberry'
 
 These methods allow you to efficiently handle elements in a list.
 
-###Question : 4 Compare and contrast tuples and lists in example.
-
+### Question : 4 Compare and contrast tuples and lists in example.
 
 Tuples and lists are both used to store collections of items, but they have some key differences. Here's a comparison with examples:
 
-1. Mutability
+#### 1. Mutability
 Lists are mutable: You can change their contents (e.g., add, remove, or modify elements).
 Tuples are immutable: Once created, their contents cannot be changed.
 Example:
-python
-Copy code
-# Lists
+
+##### Lists
+```python
 my_list = [1, 2, 3]
 my_list[0] = 10  # Modifying an element
 my_list.append(4)  # Adding an element
 print(my_list)  # Output: [10, 2, 3, 4]
-
-# Tuples
+```
+##### Tuples
+```python
 my_tuple = (1, 2, 3)
 # my_tuple[0] = 10  # This will raise a TypeError
 # my_tuple.append(4)  # This will raise an AttributeError
-2. Syntax
+```
+#### 2. Syntax
 Lists use square brackets [].
 Tuples use parentheses ().
 Example:
-python
-Copy code
+```python
 # List
 my_list = [1, 2, 3]
 
 # Tuple
 my_tuple = (1, 2, 3)
-3. Performance
+
+```
+#### 3. Performance
 Tuples generally have a slight performance advantage over lists because they are immutable. They use less memory and can be faster for iteration.
 Lists are more flexible but have a bit more overhead due to their mutability.
 Example:
-python
-Copy code
+```python 
 import sys
 import timeit
 
@@ -157,23 +158,25 @@ tuple_time = timeit.timeit('for i in (1, 2, 3): pass', number=1000000)
 
 print(f"List iteration time: {list_time}")
 print(f"Tuple iteration time: {tuple_time}")
-4. Use Cases
+```
+
+#### 4. Use Cases
 Lists are suitable when you need a collection of items that may change over time. They are commonly used when the order of elements is important and you may need to update the collection.
 Tuples are suitable for fixed collections of items. They are often used for heterogeneous (different types) data where the content shouldn't change, like storing coordinates or function return values.
 Example:
-python
-Copy code
+```python
 # List (mutable)
 shopping_list = ['milk', 'bread', 'eggs']  # Can be changed as needed
 
 # Tuple (immutable)
 coordinates = (40.7128, -74.0060)  # Latitude and longitude; shouldn't change
-5. Methods
+
+```
+#### 5. Methods
 Lists come with several methods for modification (e.g., append(), remove(), extend()).
 Tuples have fewer methods because they are immutable (e.g., count(), index()).
 Example:
-python
-Copy code
+```python
 # List methods
 my_list = [1, 2, 3]
 my_list.append(4)  # Add element
@@ -184,14 +187,87 @@ print(my_list)  # Output: [1, 3, 4]
 my_tuple = (1, 2, 3, 2)
 print(my_tuple.count(2))  # Count occurrences of 2
 print(my_tuple.index(3))  # Find index of 3
-In summary:
 
+```
+In summary:
 Lists: Mutable, flexible, more methods, suitable for changing collections.
 Tuples: Immutable, slightly faster and memory-efficient, suitable for fixed collections.
 
 
+### Question : 5 Iterators vs Iterables
++ Iterables are objects like lists or strings that can be looped over (using a for loop).
++ Iterators are objects that represent a stream of data and can be iterated one value at a time using next().
++ Difference: Iterable can be converted into an iterator using iter(), while iterators maintain state and generate values on demand.
+```python
+my_list = [1, 2, 3]  # Iterable
+iterator = iter(my_list)  # Iterator
+print(next(iterator))  # Output: 1
+```
+
+### Question : 6 Generators in Python
+
++ Generators are functions that return an iterator, where values are produced one at a time using the yield keyword instead of returning all at once with `return`. Generators allow lazy evaluation, meaning values are generated as needed.
+```python
+def my_generator():
+    for i in range(3):
+        yield i
+
+for value in my_generator():
+    print(value)
+
+```
+
+### Question : 7 Advantages of Generators
++ Memory Efficient: Generators produce items one by one, reducing memory usage, especially with large datasets.
++ Lazy Evaluation: Values are generated only when needed, making generators faster for some operations.
++ State Retention: Generators maintain their state between calls, allowing resumption of iteration where it left off.
+```python
+def generate_numbers():
+    yield 1
+    yield 2
+print(list(generate_numbers()))  # Output: [1, 2]
+
+```
+
+### Question : 8 Lambda Function in Python
++ A **lambda function** is an anonymous, inline function defined using the lambda keyword. It is typically used for short, throwaway functions that are passed as arguments in other functions.
+```python
+square = lambda x: x * x
+print(square(4))  # Output: 16
+
+```
+### Question : 9 Purpose and Usage of `map()` Function
++ The `map()` function applies a given function to all items in an iterable (e.g., list, tuple) and returns a map object.
+```python
+numbers = [1, 2, 3, 4]
+squared = map(lambda x: x**2, numbers)
+print(list(squared))  # Output: [1, 4, 9, 16]
+
+```
+
+### Question : 10 Purpose of `map()`, `reduce()`, and `filter()`
++ map(): Applies a function to every item in an iterable.
+
+```python
+map_result = map(lambda x: x * 2, [1, 2, 3])  # Output: [2, 4, 6]
+```
 
 
++ reduce(): Applies a function to pairs of items, reducing them to a single value (import from `functools`).
+from functools import reduce
+```python
+reduce_result = reduce(lambda x, y: x + y, [1, 2, 3])  # Output: 6
+```
+
++ filter(): Filters items in an iterable based on a condition.
+```python
+filter_result = filter(lambda x: x > 2, [1, 2, 3])  # Output: [3]
+```
+
+### Question : 11 **Internal Mechanism**
++ Start with 47 and 11 → sum = 58.
++ Then, 58 and 42 → sum = 100.
++ Finally, 100 and 13 → sum = 113.
 
 
 ## 2. Practical 
